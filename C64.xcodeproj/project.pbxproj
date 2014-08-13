@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE377766199BFBF7003D720F /* dither.png in Resources */ = {isa = PBXBuildFile; fileRef = BE377765199BFBF7003D720F /* dither.png */; };
 		BEB7387C19955DC000C7F556 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7387B19955DC000C7F556 /* main.m */; };
 		BEB7387F19955DC000C7F556 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7387E19955DC000C7F556 /* AppDelegate.m */; };
-		BEB7388219955DC000C7F556 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7388119955DC000C7F556 /* ViewController.m */; };
 		BEB7388519955DC000C7F556 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB7388319955DC000C7F556 /* Main.storyboard */; };
 		BEB7388719955DC000C7F556 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEB7388619955DC000C7F556 /* Images.xcassets */; };
 		BEB7389319955DC000C7F556 /* C64Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7389219955DC000C7F556 /* C64Tests.m */; };
+		BEB738B0199601DB00C7F556 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB738AB199601DB00C7F556 /* CameraViewController.m */; };
+		BEB738B1199601DB00C7F556 /* CameraGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB738AD199601DB00C7F556 /* CameraGLView.m */; };
+		BEB738B2199601DB00C7F556 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB738AF199601DB00C7F556 /* Camera.m */; };
+		BEB738B41996024100C7F556 /* shutter.caf in Resources */ = {isa = PBXBuildFile; fileRef = BEB738B31996024100C7F556 /* shutter.caf */; };
+		BEB738BC1996083900C7F556 /* ColorFilter.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BEB738B81996083900C7F556 /* ColorFilter.fsh */; };
+		BEB738BD1996083900C7F556 /* HorFilter.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BEB738B91996083900C7F556 /* HorFilter.fsh */; };
+		BEB738BE1996083900C7F556 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BEB738BA1996083900C7F556 /* Shader.fsh */; };
+		BEB738BF1996083900C7F556 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = BEB738BB1996083900C7F556 /* Shader.vsh */; };
+		BEB738C1199608F100C7F556 /* C64.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BEB738C0199608F100C7F556 /* C64.fsh */; };
+		BEB738C3199612AB00C7F556 /* VerFilter.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BEB738C2199612AB00C7F556 /* VerFilter.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,18 +36,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE377765199BFBF7003D720F /* dither.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dither.png; sourceTree = "<group>"; };
 		BEB7387619955DC000C7F556 /* C64.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C64.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB7387A19955DC000C7F556 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEB7387B19955DC000C7F556 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BEB7387D19955DC000C7F556 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BEB7387E19955DC000C7F556 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BEB7388019955DC000C7F556 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		BEB7388119955DC000C7F556 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		BEB7388419955DC000C7F556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BEB7388619955DC000C7F556 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BEB7388C19955DC000C7F556 /* C64Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = C64Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB7389119955DC000C7F556 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEB7389219955DC000C7F556 /* C64Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = C64Tests.m; sourceTree = "<group>"; };
+		BEB738AA199601DB00C7F556 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		BEB738AB199601DB00C7F556 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		BEB738AC199601DB00C7F556 /* CameraGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraGLView.h; sourceTree = "<group>"; };
+		BEB738AD199601DB00C7F556 /* CameraGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraGLView.m; sourceTree = "<group>"; };
+		BEB738AE199601DB00C7F556 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		BEB738AF199601DB00C7F556 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
+		BEB738B31996024100C7F556 /* shutter.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shutter.caf; sourceTree = "<group>"; };
+		BEB738B81996083900C7F556 /* ColorFilter.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ColorFilter.fsh; path = Shaders/ColorFilter.fsh; sourceTree = "<group>"; };
+		BEB738B91996083900C7F556 /* HorFilter.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = HorFilter.fsh; path = Shaders/HorFilter.fsh; sourceTree = "<group>"; };
+		BEB738BA1996083900C7F556 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
+		BEB738BB1996083900C7F556 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
+		BEB738C0199608F100C7F556 /* C64.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = C64.fsh; path = Shaders/C64.fsh; sourceTree = "<group>"; };
+		BEB738C2199612AB00C7F556 /* VerFilter.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = VerFilter.fsh; path = Shaders/VerFilter.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +101,17 @@
 		BEB7387819955DC000C7F556 /* C64 */ = {
 			isa = PBXGroup;
 			children = (
+				BEB7388319955DC000C7F556 /* Main.storyboard */,
 				BEB7387D19955DC000C7F556 /* AppDelegate.h */,
 				BEB7387E19955DC000C7F556 /* AppDelegate.m */,
-				BEB7388019955DC000C7F556 /* ViewController.h */,
-				BEB7388119955DC000C7F556 /* ViewController.m */,
-				BEB7388319955DC000C7F556 /* Main.storyboard */,
+				BEB738AA199601DB00C7F556 /* CameraViewController.h */,
+				BEB738AB199601DB00C7F556 /* CameraViewController.m */,
+				BEB738AC199601DB00C7F556 /* CameraGLView.h */,
+				BEB738AD199601DB00C7F556 /* CameraGLView.m */,
+				BEB738AE199601DB00C7F556 /* Camera.h */,
+				BEB738AF199601DB00C7F556 /* Camera.m */,
 				BEB7388619955DC000C7F556 /* Images.xcassets */,
+				BEB738B71996080900C7F556 /* Shaders */,
 				BEB7387919955DC000C7F556 /* Supporting Files */,
 			);
 			path = C64;
@@ -93,6 +120,7 @@
 		BEB7387919955DC000C7F556 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BEB738B31996024100C7F556 /* shutter.caf */,
 				BEB7387A19955DC000C7F556 /* Info.plist */,
 				BEB7387B19955DC000C7F556 /* main.m */,
 			);
@@ -114,6 +142,20 @@
 				BEB7389119955DC000C7F556 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEB738B71996080900C7F556 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				BE377765199BFBF7003D720F /* dither.png */,
+				BEB738C0199608F100C7F556 /* C64.fsh */,
+				BEB738B81996083900C7F556 /* ColorFilter.fsh */,
+				BEB738B91996083900C7F556 /* HorFilter.fsh */,
+				BEB738BA1996083900C7F556 /* Shader.fsh */,
+				BEB738BB1996083900C7F556 /* Shader.vsh */,
+				BEB738C2199612AB00C7F556 /* VerFilter.fsh */,
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,8 +238,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB738BE1996083900C7F556 /* Shader.fsh in Resources */,
+				BEB738BF1996083900C7F556 /* Shader.vsh in Resources */,
+				BEB738C3199612AB00C7F556 /* VerFilter.fsh in Resources */,
 				BEB7388519955DC000C7F556 /* Main.storyboard in Resources */,
+				BEB738C1199608F100C7F556 /* C64.fsh in Resources */,
+				BEB738BD1996083900C7F556 /* HorFilter.fsh in Resources */,
+				BEB738B41996024100C7F556 /* shutter.caf in Resources */,
+				BE377766199BFBF7003D720F /* dither.png in Resources */,
 				BEB7388719955DC000C7F556 /* Images.xcassets in Resources */,
+				BEB738BC1996083900C7F556 /* ColorFilter.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +265,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEB7388219955DC000C7F556 /* ViewController.m in Sources */,
+				BEB738B1199601DB00C7F556 /* CameraGLView.m in Sources */,
+				BEB738B2199601DB00C7F556 /* Camera.m in Sources */,
+				BEB738B0199601DB00C7F556 /* CameraViewController.m in Sources */,
 				BEB7387F19955DC000C7F556 /* AppDelegate.m in Sources */,
 				BEB7387C19955DC000C7F556 /* main.m in Sources */,
 			);
@@ -404,6 +456,7 @@
 				BEB7389819955DC000C7F556 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BEB7389919955DC000C7F556 /* Build configuration list for PBXNativeTarget "C64Tests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +465,7 @@
 				BEB7389B19955DC000C7F556 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
