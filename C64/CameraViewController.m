@@ -142,6 +142,8 @@ enum {
     }
     
     glBindTexture(ditherTexture.target, ditherTexture.name);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glEnable(ditherTexture.target);
 }
 
@@ -227,22 +229,10 @@ enum {
     
     [self loadDitherMap];
 
-    if(!programLoaded) {
-		[self loadFilterShader:@"Shader" fragmentShader:@"HorFilter" forProgram:&horFilterProgram];
-		horFilterFrame = glGetUniformLocation(horFilterProgram, "videoFrame");
-		horOutputFrame = glGetUniformLocation(horFilterProgram, "horOutputFrame");
-		horFilterCofficient = glGetUniformLocation(horFilterProgram, "coefficient");
-		horFilterStep = glGetUniformLocation(horFilterProgram, "step");
-		
-		[self loadFilterShader:@"Shader" fragmentShader:@"VerFilter" forProgram:&verFilterProgram];
-		verFilterFrame = glGetUniformLocation(verFilterProgram, "videoFrame");
-		verFilterCofficient = glGetUniformLocation(verFilterProgram, "coefficient");
-		verFilterStep = glGetUniformLocation(verFilterProgram, "step");
-		verFilterOffset = glGetUniformLocation(verFilterProgram, "offset");
-		
-		[self loadFilterShader:@"Shader" fragmentShader:@"C64" forProgram:&colorFilterProgram];
-        colorFilterFrame = glGetUniformLocation(colorFilterProgram, "videoFrame");
-        ditherMap = glGetUniformLocation(colorFilterProgram, "ditherMap");
+    if(!programLoaded) {		
+		[self loadFilterShader:@"Shader" fragmentShader:@"C64" forProgram:&c64FilterProgram];
+        colorFilterFrame = glGetUniformLocation(c64FilterProgram, "videoFrame");
+        ditherMap = glGetUniformLocation(c64FilterProgram, "ditherMap");
 	
 		programLoaded = TRUE;
 	}
@@ -373,48 +363,10 @@ enum {
 -(void)setWeeks:(float)w {   
     if((int)(100.0 * weeks) == (int)(100.0 * w)) return;
     
-    overlay.alpha = fmax(0.0, fmin(1.0, 1.0 - w / 52.0));
+    overlay.alpha = 0.0;
     
-    contrast = fmin(1.0, 0.18 * log(w)+0.5);
-    redFactor = 0.8 + 0.2 * fmin(1.0, w / 12.0);
-    greenFactor = 0.4 + 0.6 * fmin(1.0, w / 12.0);
-    blueFactor = 0.2 + 0.8 * fmin(1.0, w / 18.0);
-    
-    BOOL highresInput = w >= 25.0;
-    if(highresInput) {
-        smoothingPasses = 9 - (int)(w - 10.0) / 8 * 2;
-        smoothing = 2.0 * fmax(0.0, 60.451 * exp(-0.0743 * w));
-    } else {
-        smoothingPasses = 9 - (int)w / 4 * 2;
-        smoothing = 2.0 * fmax(0.0, 60.451 * exp(-0.0743 * w));
-    }
-    NSLog(@"smoothing = %f, passes = %d", smoothing, smoothingPasses);
-    
-    if(smoothingPasses <= 1) smoothingPasses = 1;
-    smoothing = pow(smoothing, 1.0 / (double)smoothingPasses);
-    
-    [self setNumTextureSteps:2 + smoothingPasses];
+    BOOL highresInput = NO;
 
-    // configure vertical FIR coefficients for smoothing
-    smoothing = pow(smoothing, 1.0 / (double)smoothingPasses);
-    double sum = 0.0;
-    for(int k = 0; k < 3; ++k) {
-        double x = (double)k - 1.0;
-        double y = 1.0 / exp(x * x / (2.0 * smoothing * smoothing));
-        sum += y;
-        vCoefficient[k] = y;
-    }
-    for(int i = 0; i < 3; ++i) vCoefficient[i] /= sum;
-    NSLog(@"vertical smoothing has %d passes with reuse = %f, fresh = %f", 
-          smoothingPasses, vCoefficient[0], vCoefficient[1]);
-    
-    // configure horizontal IIR coefficients for smoothing
-    double reuse = smoothing, fresh = 1.0;
-    sum = 2.0 * reuse + fresh;
-    hCoefficient[0] = hCoefficient[1] = reuse / sum;
-    hCoefficient[2] = fresh / sum;
-    NSLog(@"horizontal smoothing has reuse = %f, fresh = %f", hCoefficient[0], hCoefficient[2]);
-    
     if([camera setHighQuality: highresInput]) {
         [self releaseTextures];
     }
@@ -467,33 +419,11 @@ void drawSquare(void) {
 
 - (void)drawFrame {        
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, videoFrameTexture);
-
-    /*
-    // horizontal filter
+    glBindTexture(GL_TEXTURE_2D, videoFrameTexture);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, m_hTexture[0]);
-    glActiveTexture(GL_TEXTURE0);
-    glUseProgram(horFilterProgram);
-    glUniform1i(horFilterFrame, 0);
-    glUniform1i(horOutputFrame, 1);
-    glUniform1f(horFilterStep, 1.0 / (double)bufferWidth);
-    glUniform1fv(horFilterCofficient, 3, hCoefficient);
-    [self drawTextureWithIndex: 0]; 
-
-    for(int pass = 1; pass <= smoothingPasses; ++pass) {        
-        // vertical filter
-        double step = 1.0 / (double)bufferHeight;
-        glUseProgram(verFilterProgram);
-        glUniform1i(verFilterFrame, 0);
-        glUniform1f(verFilterStep, step);
-        glUniform1f(verFilterOffset, pass % 2 == 0 ? step : 0.0);
-        glUniform1fv(verFilterCofficient, 3, vCoefficient);
-        [self drawTextureWithIndex: pass]; 
-    }
-    */
-     
-    glUseProgram(colorFilterProgram);
+    glBindTexture(GL_TEXTURE_2D, ditherTexture.name);
+    
+    glUseProgram(c64FilterProgram);
     
     // color filter output goes to screen
     glBindFramebuffer(GL_FRAMEBUFFER, 0);    

@@ -21,7 +21,7 @@
     if(highQ == highQuality) return FALSE;
 
     [self stop];
-    [captureSession setSessionPreset:(highQ ? AVCaptureSessionPresetMedium : AVCaptureSessionPresetLow)];	
+    [captureSession setSessionPreset:(highQ ? AVCaptureSessionPresetMedium : AVCaptureSessionPreset352x288)];	
     [self start];
     highQuality = highQ;
     
@@ -71,7 +71,7 @@
 		//NSLog(@"Couldn't add video output");
 	}
 	
-    [captureSession setSessionPreset:(highQuality ? AVCaptureSessionPresetMedium : AVCaptureSessionPresetLow)];	
+    [captureSession setSessionPreset:(highQuality ? AVCaptureSessionPresetMedium : AVCaptureSessionPreset352x288)];
 }
 
 - (id)init {

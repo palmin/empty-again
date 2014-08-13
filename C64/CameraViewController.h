@@ -44,11 +44,7 @@ typedef enum { PASSTHROUGH_VIDEO, SIMPLE_THRESHOLDING, POSITION_THRESHOLDING, OB
     SystemSoundID shutterSoundID;
 			
 	BOOL programLoaded;
-	GLuint horFilterProgram, verFilterProgram, colorFilterProgram, idFilterProgram;
-    GLuint idFilterFrame;
-	GLuint horFilterFrame, horOutputFrame, horFilterCofficient, horFilterStep;
-	GLuint verFilterFrame, verFilterCofficient, verFilterStep, verFilterOffset;
-    GLuint colorFilterFrame, ditherMap;
+    GLuint c64FilterProgram, colorFilterFrame, ditherMap;
 	
 	GLuint videoFrameTexture;
 	int bufferWidth, bufferHeight;
@@ -56,9 +52,7 @@ typedef enum { PASSTHROUGH_VIDEO, SIMPLE_THRESHOLDING, POSITION_THRESHOLDING, OB
     // filter properties are all derived from weeks, and all are updated with a call to setWeeks:
     float weeks;
     int smoothingPasses;
-    double smoothing, contrast;
-    GLfloat vCoefficient[3], hCoefficient[3];
-    GLfloat redFactor, greenFactor, blueFactor;
+    double smoothing;
     
     BOOL grabNextPicture, pauseFilter;
     UIImage* grabbedImage;
