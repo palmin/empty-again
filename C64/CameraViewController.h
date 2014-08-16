@@ -44,10 +44,11 @@ typedef enum { PASSTHROUGH_VIDEO, SIMPLE_THRESHOLDING, POSITION_THRESHOLDING, OB
     SystemSoundID shutterSoundID;
 			
 	BOOL programLoaded;
-    GLuint c64FilterProgram, colorFilterFrame, ditherMap;
-	
+    GLuint c64FilterProgram, colorFilterFrame, ditherMap, textureScale;
+    CGFloat textureScaleValue;
+    
 	GLuint videoFrameTexture;
-	int bufferWidth, bufferHeight;
+	size_t bufferWidth, bufferHeight;
 	
     // filter properties are all derived from weeks, and all are updated with a call to setWeeks:
     float weeks;

@@ -30,7 +30,7 @@ enum {
 
 @implementation CameraViewController
 
-#define DEBUG
+//#define DEBUG
 
 #pragma mark -
 #pragma mark Initialization and teardown
@@ -142,8 +142,10 @@ enum {
     }
     
     glBindTexture(ditherTexture.target, ditherTexture.name);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(ditherTexture.target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(ditherTexture.target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(ditherTexture.target, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(ditherTexture.target, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glEnable(ditherTexture.target);
 }
 
@@ -233,7 +235,9 @@ enum {
 		[self loadFilterShader:@"Shader" fragmentShader:@"C64" forProgram:&c64FilterProgram];
         colorFilterFrame = glGetUniformLocation(c64FilterProgram, "videoFrame");
         ditherMap = glGetUniformLocation(c64FilterProgram, "ditherMap");
-	
+        textureScale = glGetUniformLocation(c64FilterProgram, "scale");
+        textureScaleValue = 64.0;
+        
 		programLoaded = TRUE;
 	}
 
@@ -417,13 +421,16 @@ void drawSquare(void) {
     glBindTexture(GL_TEXTURE_2D, m_hTexture[index]);
 }
 
-- (void)drawFrame {        
-	glActiveTexture(GL_TEXTURE0);
+- (void)drawFrame {
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, videoFrameTexture);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, ditherTexture.name);
     
     glUseProgram(c64FilterProgram);
+    glUniform1i(colorFilterFrame, 0); // texture unit 0 is camera input
+    glUniform1i(ditherMap, 1); // texture unit 1 is dither map
+    glUniform1f(textureScale, textureScaleValue);
     
     // color filter output goes to screen
     glBindFramebuffer(GL_FRAMEBUFFER, 0);    
@@ -622,6 +629,7 @@ void drawSquare(void) {
 	CVPixelBufferLockBaseAddress(cameraFrame, 0);
 	bufferHeight = CVPixelBufferGetHeight(cameraFrame);
 	bufferWidth = CVPixelBufferGetWidth(cameraFrame);
+    textureScaleValue = 60;//bufferWidth / 2.0;
 	
     [self setupTexturesWithSize:CGSizeMake(bufferWidth, bufferHeight)];
     
