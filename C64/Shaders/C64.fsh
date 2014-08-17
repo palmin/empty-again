@@ -11,7 +11,7 @@ void main() {
     ivec2 ditherSize;
     
 	pixelColor = texture2D(videoFrame, textureCoordinate.st);
-    pixelColor = pixelColor + texture2D(ditherMap, textureCoordinate.st * scale) - 0.5;
+    pixelColor = pixelColor + 0.15 * (texture2D(ditherMap, textureCoordinate.st * scale) - 0.5);
     
     YCrCb = vec3(    0.299 * pixelColor.r +    0.587 * pixelColor.g +    0.114 * pixelColor.b,
                  -0.168736 * pixelColor.r - 0.331264 * pixelColor.g +      0.5 * pixelColor.b,
