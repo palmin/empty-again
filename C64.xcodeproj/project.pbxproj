@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BE377766199BFBF7003D720F /* dither.png in Resources */ = {isa = PBXBuildFile; fileRef = BE377765199BFBF7003D720F /* dither.png */; };
+		BE662BF019A23362001201B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE662BEF19A23362001201B2 /* main.m */; };
 		BEB7387C19955DC000C7F556 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7387B19955DC000C7F556 /* main.m */; };
 		BEB7387F19955DC000C7F556 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7387E19955DC000C7F556 /* AppDelegate.m */; };
 		BEB7388519955DC000C7F556 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB7388319955DC000C7F556 /* Main.storyboard */; };
@@ -35,8 +36,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BE662BEB19A23362001201B2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		BE377765199BFBF7003D720F /* dither.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dither.png; sourceTree = "<group>"; };
+		BE662BED19A23362001201B2 /* mk-palette */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "mk-palette"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE662BEF19A23362001201B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BEB7387619955DC000C7F556 /* C64.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C64.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB7387A19955DC000C7F556 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEB7387B19955DC000C7F556 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,6 +78,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BE662BEA19A23362001201B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEB7387319955DC000C7F556 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -80,11 +102,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE662BEE19A23362001201B2 /* mk-palette */ = {
+			isa = PBXGroup;
+			children = (
+				BE662BEF19A23362001201B2 /* main.m */,
+			);
+			path = "mk-palette";
+			sourceTree = "<group>";
+		};
 		BEB7386D19955DC000C7F556 = {
 			isa = PBXGroup;
 			children = (
 				BEB7387819955DC000C7F556 /* C64 */,
 				BEB7388F19955DC000C7F556 /* C64Tests */,
+				BE662BEE19A23362001201B2 /* mk-palette */,
 				BEB7387719955DC000C7F556 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +125,7 @@
 			children = (
 				BEB7387619955DC000C7F556 /* C64.app */,
 				BEB7388C19955DC000C7F556 /* C64Tests.xctest */,
+				BE662BED19A23362001201B2 /* mk-palette */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +193,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BE662BEC19A23362001201B2 /* mk-palette */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE662BF319A23362001201B2 /* Build configuration list for PBXNativeTarget "mk-palette" */;
+			buildPhases = (
+				BE662BE919A23362001201B2 /* Sources */,
+				BE662BEA19A23362001201B2 /* Frameworks */,
+				BE662BEB19A23362001201B2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "mk-palette";
+			productName = "mk-palette";
+			productReference = BE662BED19A23362001201B2 /* mk-palette */;
+			productType = "com.apple.product-type.tool";
+		};
 		BEB7387519955DC000C7F556 /* C64 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BEB7389619955DC000C7F556 /* Build configuration list for PBXNativeTarget "C64" */;
@@ -205,6 +254,9 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Applied Phasor";
 				TargetAttributes = {
+					BE662BEC19A23362001201B2 = {
+						CreatedOnToolsVersion = 6.0;
+					};
 					BEB7387519955DC000C7F556 = {
 						CreatedOnToolsVersion = 6.0;
 					};
@@ -229,6 +281,7 @@
 			targets = (
 				BEB7387519955DC000C7F556 /* C64 */,
 				BEB7388B19955DC000C7F556 /* C64Tests */,
+				BE662BEC19A23362001201B2 /* mk-palette */,
 			);
 		};
 /* End PBXProject section */
@@ -261,6 +314,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BE662BE919A23362001201B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE662BF019A23362001201B2 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BEB7387219955DC000C7F556 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,6 +364,29 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BE662BF119A23362001201B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BE662BF219A23362001201B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		BEB7389419955DC000C7F556 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -444,6 +528,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BE662BF319A23362001201B2 /* Build configuration list for PBXNativeTarget "mk-palette" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE662BF119A23362001201B2 /* Debug */,
+				BE662BF219A23362001201B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		BEB7387119955DC000C7F556 /* Build configuration list for PBXProject "C64" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
