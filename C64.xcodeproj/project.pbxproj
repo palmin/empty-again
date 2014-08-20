@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		BE377766199BFBF7003D720F /* dither.png in Resources */ = {isa = PBXBuildFile; fileRef = BE377765199BFBF7003D720F /* dither.png */; };
 		BE662BF019A23362001201B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE662BEF19A23362001201B2 /* main.m */; };
+		BE6BFAE019A3DF950076B7FF /* PaletteTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6BFADF19A3DF950076B7FF /* PaletteTexture.m */; };
+		BE6BFAE119A3E7600076B7FF /* palette-12bit.png in Resources */ = {isa = PBXBuildFile; fileRef = BE89011E19A3381400E66959 /* palette-12bit.png */; };
+		BE6BFAE219A3E7650076B7FF /* palette-c64.png in Resources */ = {isa = PBXBuildFile; fileRef = BE89011D19A3381400E66959 /* palette-c64.png */; };
 		BEB7387C19955DC000C7F556 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7387B19955DC000C7F556 /* main.m */; };
 		BEB7387F19955DC000C7F556 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7387E19955DC000C7F556 /* AppDelegate.m */; };
 		BEB7388519955DC000C7F556 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB7388319955DC000C7F556 /* Main.storyboard */; };
@@ -52,6 +55,10 @@
 		BE377765199BFBF7003D720F /* dither.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dither.png; sourceTree = "<group>"; };
 		BE662BED19A23362001201B2 /* mk-palette */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "mk-palette"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE662BEF19A23362001201B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BE6BFADE19A3DF950076B7FF /* PaletteTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteTexture.h; sourceTree = "<group>"; };
+		BE6BFADF19A3DF950076B7FF /* PaletteTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteTexture.m; sourceTree = "<group>"; };
+		BE89011D19A3381400E66959 /* palette-c64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette-c64.png"; sourceTree = "<group>"; };
+		BE89011E19A3381400E66959 /* palette-12bit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette-12bit.png"; sourceTree = "<group>"; };
 		BEB7387619955DC000C7F556 /* C64.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C64.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB7387A19955DC000C7F556 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEB7387B19955DC000C7F556 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -105,6 +112,8 @@
 		BE662BEE19A23362001201B2 /* mk-palette */ = {
 			isa = PBXGroup;
 			children = (
+				BE89011D19A3381400E66959 /* palette-c64.png */,
+				BE89011E19A3381400E66959 /* palette-12bit.png */,
 				BE662BEF19A23362001201B2 /* main.m */,
 			);
 			path = "mk-palette";
@@ -142,6 +151,8 @@
 				BEB738AD199601DB00C7F556 /* CameraGLView.m */,
 				BEB738AE199601DB00C7F556 /* Camera.h */,
 				BEB738AF199601DB00C7F556 /* Camera.m */,
+				BE6BFADE19A3DF950076B7FF /* PaletteTexture.h */,
+				BE6BFADF19A3DF950076B7FF /* PaletteTexture.m */,
 				BEB7388619955DC000C7F556 /* Images.xcassets */,
 				BEB738B71996080900C7F556 /* Shaders */,
 				BEB7387919955DC000C7F556 /* Supporting Files */,
@@ -294,12 +305,14 @@
 				BEB738BE1996083900C7F556 /* Shader.fsh in Resources */,
 				BEB738BF1996083900C7F556 /* Shader.vsh in Resources */,
 				BEB738C3199612AB00C7F556 /* VerFilter.fsh in Resources */,
+				BE6BFAE219A3E7650076B7FF /* palette-c64.png in Resources */,
 				BEB7388519955DC000C7F556 /* Main.storyboard in Resources */,
 				BEB738C1199608F100C7F556 /* C64.fsh in Resources */,
 				BEB738BD1996083900C7F556 /* HorFilter.fsh in Resources */,
 				BEB738B41996024100C7F556 /* shutter.caf in Resources */,
 				BE377766199BFBF7003D720F /* dither.png in Resources */,
 				BEB7388719955DC000C7F556 /* Images.xcassets in Resources */,
+				BE6BFAE119A3E7600076B7FF /* palette-12bit.png in Resources */,
 				BEB738BC1996083900C7F556 /* ColorFilter.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEB738B1199601DB00C7F556 /* CameraGLView.m in Sources */,
+				BE6BFAE019A3DF950076B7FF /* PaletteTexture.m in Sources */,
 				BEB738B2199601DB00C7F556 /* Camera.m in Sources */,
 				BEB738B0199601DB00C7F556 /* CameraViewController.m in Sources */,
 				BEB7387F19955DC000C7F556 /* AppDelegate.m in Sources */,
@@ -535,6 +549,7 @@
 				BE662BF219A23362001201B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BEB7387119955DC000C7F556 /* Build configuration list for PBXProject "C64" */ = {
 			isa = XCConfigurationList;

@@ -3,28 +3,24 @@ precision mediump float;
 
 uniform sampler2D videoFrame;
 uniform sampler2D ditherMap;
+uniform sampler2D paletteMap;
 uniform float scale;
 
 void main() {
     vec4 pixelColor;
     vec3 YCrCb;
     ivec2 ditherSize;
+    float blue, x, y;
+    vec2 pos;
     
 	pixelColor = texture2D(videoFrame, textureCoordinate.st);
     pixelColor = pixelColor + 0.15 * (texture2D(ditherMap, textureCoordinate.st * scale) - 0.5);
     
-    YCrCb = vec3(    0.299 * pixelColor.r +    0.587 * pixelColor.g +    0.114 * pixelColor.b,
-                 -0.168736 * pixelColor.r - 0.331264 * pixelColor.g +      0.5 * pixelColor.b,
-                       0.5 * pixelColor.r - 0.418688 * pixelColor.g - 0.081313 * pixelColor.b);
-    
-    YCrCb[0] = floor(0.499 + YCrCb[0] * 5.0) / 5.0;
-    YCrCb[1] = floor(0.499 + YCrCb[1] * 3.0) / 3.0;
-    YCrCb[2] = floor(0.499 + YCrCb[2] * 3.0) / 3.0;
-    
-    pixelColor = vec4(YCrCb[0]                        + 1.402 * YCrCb[2],
-                      YCrCb[0] - 0.34414 * YCrCb[1] - 0.71414 * YCrCb[2],
-                      YCrCb[0] +   1.772 * YCrCb[1],
-                      pixelColor.a);
+    blue = floor(pixelColor.b * 15.0);
+    x = 16.0 * mod(blue, 4.0) + floor(pixelColor.r * 15.0);
+    y = 16.0 * floor(blue / 4.0) + floor(pixelColor.g * 15.0);
+    pos = vec2(x, y) / 64.0;
+    pixelColor = texture2D(paletteMap, pos.st);
     
     gl_FragColor = pixelColor;
 }

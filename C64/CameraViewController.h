@@ -23,6 +23,7 @@ typedef enum { PASSTHROUGH_VIDEO, SIMPLE_THRESHOLDING, POSITION_THRESHOLDING, OB
     GLuint* m_hFBO;
     
     GLKTextureInfo* ditherTexture;
+    GLKTextureInfo* paletteTexture;
     
 	Camera *camera;
 	UIScreen *screenForDisplay;
@@ -44,7 +45,7 @@ typedef enum { PASSTHROUGH_VIDEO, SIMPLE_THRESHOLDING, POSITION_THRESHOLDING, OB
     SystemSoundID shutterSoundID;
 			
 	BOOL programLoaded;
-    GLuint c64FilterProgram, colorFilterFrame, ditherMap, textureScale;
+    GLuint c64FilterProgram, colorFilterFrame, ditherMap, paletteMap, textureScale;
     CGFloat textureScaleValue;
     
 	GLuint videoFrameTexture;

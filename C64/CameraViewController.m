@@ -10,6 +10,7 @@
 
 #import "CameraViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "PaletteTexture.h"
 #import <GLKit/GLKit.h>
 
 // Uniform index.
@@ -127,17 +128,51 @@ enum {
     m_setup = FALSE;
 }
 
+-(UIImage*)imageFromDocsOrResourceWithFilename:(NSString*)filename {
+    NSString* bundlePath = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
+    NSString* docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:filename];
+    
+    // we prefer version in docs folder
+    UIImage* image = [UIImage imageWithContentsOfFile:docPath];
+    if(image) return image;
+    
+    // fall back to image from resource bundle, but write this to docs folder to allow customization
+    image = [UIImage imageWithContentsOfFile:bundlePath];
+    if(image) {
+        [[NSFileManager defaultManager] copyItemAtPath:bundlePath toPath:docPath error:NULL];
+    }
+    
+    return image;
+}
+
+-(void)loadPaletteTexture {
+    if(paletteTexture) return;
+    
+    NSLog(@"GL Error = %u", glGetError());
+    
+    // UIImage* input = [self imageFromDocsOrResourceWithFilename: @"palette-12bit.png"];
+    UIImage* input = [self imageFromDocsOrResourceWithFilename: @"palette-c64.png"];
+    paletteTexture = [PaletteTexture textureFromImage:input];
+        
+    glBindTexture(paletteTexture.target, paletteTexture.name);
+    glTexParameteri(paletteTexture.target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(paletteTexture.target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(paletteTexture.target, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(paletteTexture.target, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glEnable(paletteTexture.target);
+
+}
+
 -(void)loadDitherMap {
     if(ditherTexture) return;
     
     NSLog(@"GL Error = %u", glGetError());
     
     NSError* error = nil;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"dither" ofType:@"png"];
-    UIImage* image = [UIImage imageWithContentsOfFile:filePath];
+    UIImage* image = [self imageFromDocsOrResourceWithFilename: @"dither.png"];
     ditherTexture = [GLKTextureLoader textureWithCGImage:image.CGImage options:nil error:&error];
     if(!ditherTexture) {
-        NSLog(@"Unable to load %@:\n%@", filePath, error);
+        NSLog(@"Unable to load dither.png:\n%@", error);
         return;
     }
     
@@ -230,12 +265,14 @@ enum {
 	[self.view addSubview:glView];
     
     [self loadDitherMap];
+    [self loadPaletteTexture];
 
-    if(!programLoaded) {		
+    if(!programLoaded) {
 		[self loadFilterShader:@"Shader" fragmentShader:@"C64" forProgram:&c64FilterProgram];
         colorFilterFrame = glGetUniformLocation(c64FilterProgram, "videoFrame");
         ditherMap = glGetUniformLocation(c64FilterProgram, "ditherMap");
         textureScale = glGetUniformLocation(c64FilterProgram, "scale");
+        paletteMap = glGetUniformLocation(c64FilterProgram, "paletteMap");
         textureScaleValue = 64.0;
         
 		programLoaded = TRUE;
@@ -426,10 +463,13 @@ void drawSquare(void) {
     glBindTexture(GL_TEXTURE_2D, videoFrameTexture);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, ditherTexture.name);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, paletteTexture.name);
     
     glUseProgram(c64FilterProgram);
     glUniform1i(colorFilterFrame, 0); // texture unit 0 is camera input
     glUniform1i(ditherMap, 1); // texture unit 1 is dither map
+    glUniform1i(paletteMap, 2); // texture unit 2 is palette map
     glUniform1f(textureScale, textureScaleValue);
     
     // color filter output goes to screen
