@@ -14,11 +14,11 @@ void main() {
     vec2 pos;
     
 	pixelColor = texture2D(videoFrame, textureCoordinate.st);
-    pixelColor = pixelColor + 0.15 * (texture2D(ditherMap, textureCoordinate.st * scale) - 0.5);
+    pixelColor = pixelColor + texture2D(ditherMap, textureCoordinate.st * scale) - 0.5;
     
-    blue = floor(pixelColor.b * 15.0);
-    x = 16.0 * mod(blue, 4.0) + floor(pixelColor.r * 15.0);
-    y = 16.0 * floor(blue / 4.0) + floor(pixelColor.g * 15.0);
+    blue = floor(clamp(pixelColor.b, 0.0, 1.0) * 15.0);
+    x = 16.0 * mod(blue, 4.0) + floor(clamp(pixelColor.r, 0.0, 1.0) * 15.0);
+    y = 16.0 * floor(blue / 4.0) + floor(clamp(pixelColor.g, 0.0, 1.0) * 15.0);
     pos = vec2(x, y) / 64.0;
     pixelColor = texture2D(paletteMap, pos.st);
     

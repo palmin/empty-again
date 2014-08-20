@@ -130,19 +130,19 @@ enum {
 
 -(UIImage*)imageFromDocsOrResourceWithFilename:(NSString*)filename {
     NSString* bundlePath = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
-    NSString* docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:filename];
+    NSString* docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    NSString* docPath = [docDir stringByAppendingPathComponent:filename];
     
+    // copy in default file from resource bundle
+    NSString* destPath = [docDir stringByAppendingPathComponent: [NSString stringWithFormat:@"default-%@", filename]];
+    [[NSFileManager defaultManager] copyItemAtPath:bundlePath toPath:destPath error:NULL];
+
     // we prefer version in docs folder
     UIImage* image = [UIImage imageWithContentsOfFile:docPath];
     if(image) return image;
     
-    // fall back to image from resource bundle, but write this to docs folder to allow customization
-    image = [UIImage imageWithContentsOfFile:bundlePath];
-    if(image) {
-        [[NSFileManager defaultManager] copyItemAtPath:bundlePath toPath:docPath error:NULL];
-    }
-    
-    return image;
+    // fall back to image from resource bundle
+    return [UIImage imageWithContentsOfFile:bundlePath];
 }
 
 -(void)loadPaletteTexture {
@@ -150,15 +150,15 @@ enum {
     
     NSLog(@"GL Error = %u", glGetError());
     
-    // UIImage* input = [self imageFromDocsOrResourceWithFilename: @"palette-12bit.png"];
-    UIImage* input = [self imageFromDocsOrResourceWithFilename: @"palette-c64.png"];
+    //UIImage* input = [self imageFromDocsOrResourceWithFilename: @"palette-12bit.png"];
+    UIImage* input = [self imageFromDocsOrResourceWithFilename: @"palette.png"];
     paletteTexture = [PaletteTexture textureFromImage:input];
         
     glBindTexture(paletteTexture.target, paletteTexture.name);
     glTexParameteri(paletteTexture.target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(paletteTexture.target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(paletteTexture.target, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(paletteTexture.target, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(paletteTexture.target, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(paletteTexture.target, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glEnable(paletteTexture.target);
 
 }

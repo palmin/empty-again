@@ -11,7 +11,7 @@
 		BE662BF019A23362001201B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE662BEF19A23362001201B2 /* main.m */; };
 		BE6BFAE019A3DF950076B7FF /* PaletteTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6BFADF19A3DF950076B7FF /* PaletteTexture.m */; };
 		BE6BFAE119A3E7600076B7FF /* palette-12bit.png in Resources */ = {isa = PBXBuildFile; fileRef = BE89011E19A3381400E66959 /* palette-12bit.png */; };
-		BE6BFAE219A3E7650076B7FF /* palette-c64.png in Resources */ = {isa = PBXBuildFile; fileRef = BE89011D19A3381400E66959 /* palette-c64.png */; };
+		BE6BFAE219A3E7650076B7FF /* palette.png in Resources */ = {isa = PBXBuildFile; fileRef = BE89011D19A3381400E66959 /* palette.png */; };
 		BEB7387C19955DC000C7F556 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7387B19955DC000C7F556 /* main.m */; };
 		BEB7387F19955DC000C7F556 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB7387E19955DC000C7F556 /* AppDelegate.m */; };
 		BEB7388519955DC000C7F556 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB7388319955DC000C7F556 /* Main.storyboard */; };
@@ -57,7 +57,7 @@
 		BE662BEF19A23362001201B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE6BFADE19A3DF950076B7FF /* PaletteTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteTexture.h; sourceTree = "<group>"; };
 		BE6BFADF19A3DF950076B7FF /* PaletteTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteTexture.m; sourceTree = "<group>"; };
-		BE89011D19A3381400E66959 /* palette-c64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette-c64.png"; sourceTree = "<group>"; };
+		BE89011D19A3381400E66959 /* palette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette.png; sourceTree = "<group>"; };
 		BE89011E19A3381400E66959 /* palette-12bit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "palette-12bit.png"; sourceTree = "<group>"; };
 		BEB7387619955DC000C7F556 /* C64.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C64.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB7387A19955DC000C7F556 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		BE662BEE19A23362001201B2 /* mk-palette */ = {
 			isa = PBXGroup;
 			children = (
-				BE89011D19A3381400E66959 /* palette-c64.png */,
+				BE89011D19A3381400E66959 /* palette.png */,
 				BE89011E19A3381400E66959 /* palette-12bit.png */,
 				BE662BEF19A23362001201B2 /* main.m */,
 			);
@@ -305,7 +305,7 @@
 				BEB738BE1996083900C7F556 /* Shader.fsh in Resources */,
 				BEB738BF1996083900C7F556 /* Shader.vsh in Resources */,
 				BEB738C3199612AB00C7F556 /* VerFilter.fsh in Resources */,
-				BE6BFAE219A3E7650076B7FF /* palette-c64.png in Resources */,
+				BE6BFAE219A3E7650076B7FF /* palette.png in Resources */,
 				BEB7388519955DC000C7F556 /* Main.storyboard in Resources */,
 				BEB738C1199608F100C7F556 /* C64.fsh in Resources */,
 				BEB738BD1996083900C7F556 /* HorFilter.fsh in Resources */,
