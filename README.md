@@ -1,5 +1,5 @@
 # c64
-Realtime video filter that simulates 16 color c64 palette
+Realtime video filter for iPhone that simulates 16 color c64 palette
 
 This is toy project made some years ago, that shows a quick way to reduce image to 
 fixed palette by doing lookup directly on a texture with optional dithering.
