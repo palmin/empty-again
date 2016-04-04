@@ -6,4 +6,4 @@ fixed palette by doing lookup directly on a texture with optional dithering.
 
 This lets palette reduction run in realtime on the camera feed.
 
-The project is not actively being developed, but if you have any questions you can ask @palmin on Twitter.
+The project is not actively being developed, but if you have any questions you can ask [@palmin](https://twitter.com/palmin) on Twitter.
